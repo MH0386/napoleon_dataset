@@ -1,18 +1,27 @@
 import requests
 from bs4 import BeautifulSoup
 
-# Make a request to the website
-r = requests.get('')
+# Specify the URL of the Wikipedia page you want to scrape
+url = "https://en.wikipedia.org/wiki/Napoleon"
 
-# Parse the HTML content
-soup = BeautifulSoup(r.text, 'html.parser')
+# Send a GET request to the URL and retrieve the HTML content
+response = requests.get(url)
+html_content = response.text
 
-# get the text of the html page
-print(soup.get_text(separator='\n'))
+# Parse the HTML content using BeautifulSoup
+soup = BeautifulSoup(html_content, "html.parser")
+
+# Find the desired text on the page (e.g., the first paragraph)
+first_paragraph = soup.find("p").text
+
+# Print the extracted text
+print(soup.contents.)
+
 
 
 '''
 https://www.history.com/topics/european-history/napoleon
 https://www.history.com/news/napoleon-exile-death
 https://www.rmg.co.uk/stories/topics/napoleon-bonaparte#:~:text=Napoleon%20Bonaparte%20was%20one%20of,at%20military%20school%20in%20France.
+https://www.britannica.com/biography/Napoleon-I/Exile-on-St-Helena
 '''
