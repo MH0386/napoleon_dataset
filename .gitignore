@@ -1,5 +1,7 @@
+.idea
 data.txt
 f.py
 main.py
 t2csv.py
-.idea
+json2csv.py
+data.json
