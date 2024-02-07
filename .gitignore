@@ -1,7 +1,7 @@
 .idea/
-data.txt
 f.py
 main.py
 t2csv.py
 json2csv.py
 data.json
+changing_personal_pronoun.py
