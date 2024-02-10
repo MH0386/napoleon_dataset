@@ -797,7 +797,7 @@ the constitution preserved the appearance of a republic but, in reality, establi
 bonaparte established a political system that historian martyn lyons called 'dictatorship by plebiscite'.
 worried by the democratic forces unleashed by the revolution, but unwilling to ignore them entirely, bonaparte resorted to regular electoral consultations with the french people on his road to imperial power.
 he drafted the constitution of the year viii and secured his own election as first consul, taking up residence at the tuileries.
-the constitution was approved in a rigged plebiscite held the following january, with 99.94 percent officially listed as voting 'yes'.
+the constitution was approved in a rigged plebiscite held the following january, with 99,94 percent officially listed as voting 'yes'.
 napoleon's brother, lucien, had falsified the returns to show that 3 million people had participated in the plebiscite.
 the real number was 1,5 million.
 political observers at the time assumed the eligible french voting public numbered about 5 million people, so the regime artificially doubled the participation rate to indicate popular enthusiasm for the consulate.
