@@ -1,14 +1,2 @@
 .idea/
-f.py
-main.py
-t2csv.py
-json2csv.py
-data.json
-changing_personal_pronoun.py
-data_new.csv
-data_prompt4.csv
-prompt.py
-data_prompt3.csv
-data_prompt2.txt
-llm-fine-tuning.ipynb
-data_prompt4.csv
+test/
