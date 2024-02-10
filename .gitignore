@@ -8,9 +8,7 @@ changing_personal_pronoun.py
 data_new.csv
 data_prompt4.csv
 prompt.py
-data_prompt3.txt
+data_prompt3.csv
 data_prompt2.txt
-test/
-done/
 llm-fine-tuning.ipynb
 data_prompt4.csv
