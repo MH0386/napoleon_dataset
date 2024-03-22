@@ -16,7 +16,11 @@ with open("napoleon_links.txt", "r", encoding="utf-8") as f:
             pdfs.append(link)
             continue
         try:
-            r = requests.get(link)
+            r = requests.get(link, timeout=10)
+            # check non-responsible links
+            if r.status_code != 200:
+                links_err.append(link)
+                continue
             soup = BeautifulSoup(r.text, "lxml")
             text = soup.get_text()
             with open(f"r/html/{m}.txt", "w", encoding="utf-8") as f:
@@ -28,7 +32,11 @@ with open("napoleon_links.txt", "r", encoding="utf-8") as f:
             links_err.append(link)
     for link in pdfs:
         try:
-            r = requests.get(link)
+            r = requests.get(link, timeout=10)
+            # check non-responsible links
+            if r.status_code != 200:
+                links_err.append(link)
+                continue
             pdf_reader = PdfReader(r.content)
             text = ""
             for page in pdf_reader.pages:
