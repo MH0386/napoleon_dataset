@@ -15,12 +15,13 @@ with open("napoleon_links.txt", "r", encoding="utf-8") as f:
             pdfs.append(link)
             continue
         try:
-            r = requests.get(link)
+            r = requests.get(link, timeout=5)
             soup = BeautifulSoup(r.text, "html.parser")
             for a in soup.get_text().split("\n"):
                 with open(f"r/{m}.txt", "w", encoding="utf-8") as f:
                     f.write(a + "\n")
             m += 1
+            print(m)
         except Exception as e:
             print(f"Error {e} at {link}")
     for link in pdfs:
