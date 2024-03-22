@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from PyPDF2 import PdfReader
 
 pdfs = []
+links_err = []
 with open("napoleon_links.txt", "r", encoding="utf-8") as f:
     links = f.readlines()
     for i, link in enumerate(links):
@@ -15,15 +16,16 @@ with open("napoleon_links.txt", "r", encoding="utf-8") as f:
             pdfs.append(link)
             continue
         try:
-            r = requests.get(link, timeout=5)
-            soup = BeautifulSoup(r.text, "html.parser")
-            for a in soup.get_text().split("\n"):
-                with open(f"r/{m}.txt", "w", encoding="utf-8") as f:
-                    f.write(a + "\n")
+            r = requests.get(link)
+            soup = BeautifulSoup(r.text, "lxml")
+            text = soup.get_text()
+            with open(f"r/html/{m}.txt", "w", encoding="utf-8") as f:
+                f.write(text)
             m += 1
             print(m)
         except Exception as e:
             print(f"Error {e} at {link}")
+            links_err.append(link)
     for link in pdfs:
         try:
             r = requests.get(link)
@@ -38,3 +40,6 @@ with open("napoleon_links.txt", "r", encoding="utf-8") as f:
             n += 1
         except Exception as e:
             print(f"Error {e} at {link}")
+            links_err.append(link)
+    with open("links_err.txt", "w", encoding="utf-8") as f:
+        f.write("\n".join(links_err))
