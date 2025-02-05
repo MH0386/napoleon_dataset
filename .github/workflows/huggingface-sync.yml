@@ -1,24 +1,34 @@
-name: Sync With Hugging Face Hub
-on:
-    push:
-    pull_request:
-    workflow_dispatch:
+name: Push To HuggingFace
+on: 
+  workflow_dispatch:
+  push:
+      branches:
+          - main
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v4.2.2
-            - name: Set up Cache
-              uses: actions/cache@v4.1.2
-              with:
-                  path: ~/.cache/pip
-                  key: ${{ runner.os }}-pip-${{ hashFiles('**/.gitignore') }}
-                  restore-keys: |
-                      ${{ runner.os }}-pip-
-            - name: Sync With Hugging Face Hub
-              uses: nateraw/huggingface-sync-action@v0.0.5
-              with:
-                  github_repo_id: "MH0386/napoleon_dataset"
-                  huggingface_repo_id: "MH0386/napoleon_bonaparte"
-                  hf_token: ${{ secrets.HF_TOKEN }}
-                  repo_type: "dataset"
+  pushToHuggingFace:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+      - name: Cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/README.md') }}
+          restore-keys: ${{ runner.os }}-pip-
+      - name: Login to HuggingFace Hub
+        uses: osbm/huggingface-login@v0.0.2
+        with:
+          username: MH0386
+          key: ${{ secrets.HF_KEY }}
+          add_to_git_credentials: true
+      - name: Enable hf_transfer
+        run: pip install huggingface_hub[hf_transfer]
+      - name: Check if logged in
+        run: huggingface-cli whoami
+      - name: Upload
+        run: |
+          rm -rd .git
+          rm -rd .github
+          rm renovate.json
+          huggingface-cli upload MH0386/napoleon_bonaparte . --repo-type dataset
